@@ -22,7 +22,7 @@ node {
 
 	echo "These are the names:"
 	echo NAMES
-	String[] names2 = NAMES.split(" ")
+	String[] names2 = NAMES.split('\n')
 	echo names2
 }
 
@@ -32,7 +32,7 @@ script {
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: names.join('\n'),
+						         choices: names2.join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
