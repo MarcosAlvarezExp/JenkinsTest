@@ -28,7 +28,9 @@ node{
 
 node {
 	echo "This is a test"
-	sh 'ruby scripts/testResult.rb'
+	NAMES = sh 'ruby scripts/testResult.rb'
+	echo "Print names"
+	echo NAMES
 	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
 }
 
