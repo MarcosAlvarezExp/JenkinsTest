@@ -16,32 +16,38 @@ node {
 	echo "Printing previous names"
 	echo env.NAMES
 
-	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
-				ruby scripts/testResult.rb
-                """,
-             	returnStdout: true
-             	)
+	// echo "This is another test"
+	// NAMES = sh (script: """#!/bin/bash -l
+	// 			ruby scripts/testResult.rb
+ //                """,
+ //             	returnStdout: true
+ //             	)
 
-	echo "These are the names:"
-	echo NAMES
-	env.NAMES = NAMES
-	echo "${env.NAMES}"
+	// echo "These are the names:"
+	// echo NAMES
+	// env.NAMES = NAMES
+	// echo "${env.NAMES}"
 }
 
-// pipeline {
-//     agent any
-//     stages {
-//         stage("foo") {
-//             steps {
-//                 script {
-//                     env.FILENAME = readFile 'output.txt'
-//                 }
-//                 echo "${env.FILENAME}"
-//             }
-//         }
-//     }
-// }
+pipeline {
+    agent any
+    stages {
+        stage("foo") {
+            steps {
+                script {
+                	echo "This is another test"
+					NAMES = sh (script: """#!/bin/bash -l
+								ruby scripts/testResult.rb
+                				""",
+             		returnStdout: true
+             		)
+                    env.FILENAME = NAMES
+                }
+                echo "${env.FILENAME}"
+            }
+        }
+    }
+}
 
 script {
 	// Define Variable
