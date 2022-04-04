@@ -26,7 +26,22 @@ node {
 	echo "These are the names:"
 	echo NAMES
 	env.NAMES = NAMES
+	echo "${env.NAMES}"
 }
+
+// pipeline {
+//     agent any
+//     stages {
+//         stage("foo") {
+//             steps {
+//                 script {
+//                     env.FILENAME = readFile 'output.txt'
+//                 }
+//                 echo "${env.FILENAME}"
+//             }
+//         }
+//     }
+// }
 
 script {
 	// Define Variable
