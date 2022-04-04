@@ -12,12 +12,22 @@
 // }
 
 script {
+	echo "This is another test"
+	NAMES = sh (script: """#!/bin/bash -l
+				ruby scripts/testResult.rb
+                """,
+             	returnStdout: true
+             	)
+
+echo "These are the names:"
+echo NAMES
+
             // Define Variable
              def USER_INPUT = input(
                     message: 'User input required - Some Yes or No question?',
                     parameters: [
                             [$class: 'ChoiceParameterDefinition',
-                             choices: ['no','yes'].join('\n'),
+                             choices: NAMES.join('\n'),
                              name: 'input',
                              description: 'Menu - select box option']
                     ])
