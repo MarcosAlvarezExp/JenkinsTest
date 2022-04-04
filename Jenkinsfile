@@ -34,7 +34,7 @@ script {
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: names2.join('\n'),
+						         choices: names.join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
