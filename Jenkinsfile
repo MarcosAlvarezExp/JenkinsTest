@@ -68,7 +68,7 @@ pipeline {
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
     }
-	// agent { label params.NODE_LABEL ?: 'poland' }  
+	agent { label params.NODE_LABEL ?: 'poland' }  
 	// triggers { cron(cron_string) }
 
 	stages {
