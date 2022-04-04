@@ -11,6 +11,26 @@
 //   sh '/usr/local/mytool-$MYTOOL_VERSION/bin/start'
 // }
 
+script {
+            // Define Variable
+             def USER_INPUT = input(
+                    message: 'User input required - Some Yes or No question?',
+                    parameters: [
+                            [$class: 'ChoiceParameterDefinition',
+                             choices: ['no','yes'].join('\n'),
+                             name: 'input',
+                             description: 'Menu - select box option']
+                    ])
+
+            echo "The answer is: ${USER_INPUT}"
+
+            if( "${USER_INPUT}" == "yes"){
+                //do something
+            } else {
+                //do something else
+            }
+        }
+
 node{
     // now you are on slave labeled with 'label'
     def workspace = WORKSPACE
@@ -80,8 +100,8 @@ pipeline {
         		script {
              		def userInput = input(id: 'userInput', message: 'Merge to?',
              		parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
-                	description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
-             		])
+                				description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+             					])
 
             		println(userInput); //Use this value to branch to different logic if needed
         		}
