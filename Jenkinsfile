@@ -28,8 +28,7 @@ node{
 
 node {
 	echo "This is a test"
-  NAMES = sh '../scripts/testResult.rb'
-  echo NAMES
+	sh '../scripts/testResult.rb'
 }
 
 // NAMES = sh (script: """#!/bin/bash -l
