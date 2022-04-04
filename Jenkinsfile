@@ -14,38 +14,35 @@ String[] names = ["Pepito1", "Juanito1"]
 
 node {
 	echo "This is another test"
-	String[] names2 = sh (script: """#!/bin/bash -l
+	NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
-             	).split(" ")
+             	)
 
-echo "These are the names:"
-echo names2
+	echo "These are the names:"
+	echo NAMES
 }
 
 script {
+	// Define Variable
+	def USER_INPUT = input(
+						message: 'User input required - Some Yes or No question?',
+						parameters: [
+						        [$class: 'ChoiceParameterDefinition',
+						         choices: names.join('\n'),
+						         name: 'input',
+						         description: 'Menu - select box option']
+						])
 
-	echo NAMES
+	echo "The answer is: ${USER_INPUT}"
 
-            // Define Variable
-             def USER_INPUT = input(
-                    message: 'User input required - Some Yes or No question?',
-                    parameters: [
-                            [$class: 'ChoiceParameterDefinition',
-                             choices: names.join('\n'),
-                             name: 'input',
-                             description: 'Menu - select box option']
-                    ])
-
-            echo "The answer is: ${USER_INPUT}"
-
-            if( "${USER_INPUT}" == "yes"){
-                //do something
-            } else {
-                //do something else
-            }
-        }
+	if( "${USER_INPUT}" == "yes"){
+	//do something
+	} else {
+	//do something else
+	}
+}
 
 node{
     // now you are on slave labeled with 'label'
