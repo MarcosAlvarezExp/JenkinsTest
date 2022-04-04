@@ -28,7 +28,7 @@ node{
 
 node {
 	echo "This is a test"
-  NAMES = sh 'scripts/testResult.rb'
+  NAMES = sh 'ruby ../scripts/testResult.rb'
   echo NAMES
 }
 
