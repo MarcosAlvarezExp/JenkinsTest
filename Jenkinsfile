@@ -13,7 +13,7 @@
 
 node {
 	echo "This is a test"
-  NAMES = sh 'ruby scripts/test_result.rb'
+  NAMES = sh 'ruby scripts/testResult.rb'
   echo NAMES
 }
 
@@ -55,7 +55,7 @@ pipeline {
 
 		stage('Test script reslt') {
        		steps {
-				sh "ruby scripts/test_result.rb"
+				sh "ruby scripts/testResult.rb"
        			echo "Executing script"
 				
        		}
