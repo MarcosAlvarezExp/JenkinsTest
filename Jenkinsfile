@@ -28,7 +28,7 @@ node{
 
 node {
 	echo "This is a test"
-	sh 'scripts/testResult.rb'
+	sh 'ruby scripts/testResult.rb'
 	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
 }
 
