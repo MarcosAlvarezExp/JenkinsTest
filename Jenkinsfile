@@ -22,7 +22,7 @@ node {
 
 	echo "These are the names:"
 	echo NAMES
-	String[] names2 = NAMES.split('\n')
+	String[] names2 = NAMES.split(" ")
 	println(names2)
 }
 
