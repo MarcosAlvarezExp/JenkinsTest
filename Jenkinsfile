@@ -11,7 +11,7 @@
 //   sh '/usr/local/mytool-$MYTOOL_VERSION/bin/start'
 // }
 
-node('label'){
+node{
     // now you are on slave labeled with 'label'
     def workspace = WORKSPACE
     // ${workspace} will now contain an absolute path to job workspace on slave
