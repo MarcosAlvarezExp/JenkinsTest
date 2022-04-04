@@ -18,7 +18,7 @@ node {
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
-             	).join
+             	).split(" ")
 
 echo "These are the names:"
 echo NAMES
