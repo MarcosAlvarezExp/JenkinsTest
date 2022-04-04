@@ -1,9 +1,9 @@
-Boolean is_develop_branch = BRANCH_NAME.contains("develop")
-Boolean is_master_branch = BRANCH_NAME.contains("master")
-Boolean is_release_branch = BRANCH_NAME.contains("release")
-Boolean is_develop_or_master = is_develop_branch || is_master_branch
-Boolean is_release_or_master = is_release_branch || is_master_branch
-String cron_string = is_develop_or_master ? "H 23 * * *" : ""
+// Boolean is_develop_branch = BRANCH_NAME.contains("develop")
+// Boolean is_master_branch = BRANCH_NAME.contains("master")
+// Boolean is_release_branch = BRANCH_NAME.contains("release")
+// Boolean is_develop_or_master = is_develop_branch || is_master_branch
+// Boolean is_release_or_master = is_release_branch || is_master_branch
+// String cron_string = is_develop_or_master ? "H 23 * * *" : ""
 
 pipeline {
 	environment {
@@ -20,15 +20,15 @@ pipeline {
       	FASTLANE_USER=credentials('jenkins-apple-id')
 	}
 	parameters {
-		booleanParam(name: "DEPLOY_TO_INTERN", defaultValue: "${is_develop_branch}", description: "Mark this check to build and deploy in app center Intern schema version")
-		booleanParam(name: "DEPLOY_TO_PRE", defaultValue: "${is_release_or_master}", description: "Mark this check to build and deploy in app center PRE schema version")
-		booleanParam(name: "RUN_APPIUM", defaultValue: "${is_develop_or_master}", description: "Mark this check to build a version for Appium tests ")
+		// booleanParam(name: "DEPLOY_TO_INTERN", defaultValue: "${is_develop_branch}", description: "Mark this check to build and deploy in app center Intern schema version")
+		// booleanParam(name: "DEPLOY_TO_PRE", defaultValue: "${is_release_or_master}", description: "Mark this check to build and deploy in app center PRE schema version")
+		// booleanParam(name: "RUN_APPIUM", defaultValue: "${is_develop_or_master}", description: "Mark this check to build a version for Appium tests ")
 		booleanParam(name: "RUN_TESTS", defaultValue: false, description: "Mark this check to execute unit and snapshot tests")
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
     }
 	agent { label params.NODE_LABEL ?: 'poland' }  
-	triggers { cron(cron_string) }
+	// triggers { cron(cron_string) }
 
 	stages {
 
@@ -108,7 +108,7 @@ pipeline {
 			cleanWs()
 		}
 		failure {
-			mail to: "jose.yebes@experis.es", subject: "Build: ${env.JOB_NAME} - Failed", body: "The PL build ${env.JOB_NAME} has failed"
+			mail to: "marcos.alvarez@experis.es", subject: "Build: ${env.JOB_NAME} - Failed", body: "The PL build ${env.JOB_NAME} has failed"
 		}
 	}
 }
