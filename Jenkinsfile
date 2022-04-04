@@ -28,8 +28,8 @@ node{
 
 node {
 	echo "This is a test"
-	// sh 'ruby scripts/testResult.rb'
-	sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
+	sh 'ruby scripts/testResult.rb'
+	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
 }
 
 // NAMES = sh (script: """#!/bin/bash -l
