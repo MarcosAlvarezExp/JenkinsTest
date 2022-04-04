@@ -14,7 +14,7 @@ String[] names = ["Pepito1", "Juanito1"]
 
 node {
 	echo "Printing previous names"
-	echo env.NAMES
+	echo env.FILENAME
 
 	// echo "This is another test"
 	// NAMES = sh (script: """#!/bin/bash -l
