@@ -18,10 +18,10 @@ node {
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
-             	)
+             	).join
 
 echo "These are the names:"
-// echo NAMES
+echo NAMES
 }
 
 script {
