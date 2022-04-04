@@ -37,7 +37,7 @@ node {
 node {
 	echo "This is another test"
 NAMES = sh (script: """#!/bin/bash -l
-					ruby scripts/test_result.rb
+					ruby scripts/testResult.rb
                      """,
              		returnStdout: true
             )
