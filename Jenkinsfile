@@ -4,6 +4,7 @@
 // Boolean is_develop_or_master = is_develop_branch || is_master_branch
 // Boolean is_release_or_master = is_release_branch || is_master_branch
 // String cron_string = is_develop_or_master ? "H 23 * * *" : ""
+String[] names = ["Pepito1", "Juanito1"]
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -32,7 +33,7 @@ script {
                     message: 'User input required - Some Yes or No question?',
                     parameters: [
                             [$class: 'ChoiceParameterDefinition',
-                             choices: NAMES.join('\n'),
+                             choices: names.join('\n'),
                              name: 'input',
                              description: 'Menu - select box option']
                     ])
