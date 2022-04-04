@@ -6,7 +6,7 @@
 // String cron_string = is_develop_or_master ? "H 23 * * *" : ""
 
 NAMES = sh (script: """#!/bin/bash -l
-					ruby scripts/test_result.rb \"${DEV_NAME}\"
+					ruby scripts/test_result.rb
                      """,
              		returnStdout: true
             )
