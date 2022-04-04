@@ -14,14 +14,14 @@ String[] names = ["Pepito1", "Juanito1"]
 
 node {
 	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
+	String[] names2 = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
              	).split(" ")
 
 echo "These are the names:"
-echo NAMES
+echo names2
 }
 
 script {
