@@ -13,8 +13,11 @@ String[] names = ["Pepito1", "Juanito1"]
 // }
 
 node {
+	echo "Printing previous names"
+	echo env.NAMES
+
 	echo "This is another test"
-	def NAMES = sh (script: """#!/bin/bash -l
+	NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
@@ -22,8 +25,7 @@ node {
 
 	echo "These are the names:"
 	echo NAMES
-	String[] names2 = NAMES.split(" ")
-	println(names2)
+	env.NAMES = NAMES
 }
 
 script {
