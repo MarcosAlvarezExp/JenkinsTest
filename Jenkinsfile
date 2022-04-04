@@ -11,7 +11,7 @@
 //   sh '/usr/local/mytool-$MYTOOL_VERSION/bin/start'
 // }
 
-script {
+node {
 	echo "This is another test"
 	NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
@@ -20,14 +20,19 @@ script {
              	)
 
 echo "These are the names:"
-echo NAMES
+// echo NAMES
+}
+
+script {
+
+	echo NAMES
 
             // Define Variable
              def USER_INPUT = input(
                     message: 'User input required - Some Yes or No question?',
                     parameters: [
                             [$class: 'ChoiceParameterDefinition',
-                             choices: NAMES.join('\n'),
+                             choices: ['no','yes'].join('\n'),
                              name: 'input',
                              description: 'Menu - select box option']
                     ])
@@ -64,18 +69,6 @@ node{
 // 	echo NAMES
 // 	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
 // }
-
-node {
-	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
-				ruby scripts/testResult.rb
-                """,
-             	returnStdout: true
-             	)
-
-echo "These are the names:"
-echo NAMES
-}
 
 pipeline {
 	// environment {
