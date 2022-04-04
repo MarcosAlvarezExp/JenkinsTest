@@ -14,7 +14,7 @@ String[] names = ["Pepito1", "Juanito1"]
 
 node {
 	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
+	def NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
