@@ -34,14 +34,17 @@ node {
 	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
 }
 
-// NAMES = sh (script: """#!/bin/bash -l
-// 					ruby scripts/test_result.rb
-//                      """,
-//              		returnStdout: true
-//             )
+node {
+	echo "This is another test"
+NAMES = sh (script: """#!/bin/bash -l
+					ruby scripts/test_result.rb
+                     """,
+             		returnStdout: true
+            )
 
-// echo "These are the names:"
-// echo NAMES
+echo "These are the names:"
+echo NAMES
+}
 
 pipeline {
 	// environment {
@@ -65,7 +68,7 @@ pipeline {
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
     }
-	agent { label params.NODE_LABEL ?: 'poland' }  
+	// agent { label params.NODE_LABEL ?: 'poland' }  
 	// triggers { cron(cron_string) }
 
 	stages {
