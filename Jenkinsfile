@@ -22,6 +22,7 @@ node {
 
 	echo "These are the names:"
 	echo NAMES
+	String[] names2 = NAMES.split(" ")
 }
 
 script {
