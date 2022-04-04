@@ -5,20 +5,29 @@
 // Boolean is_release_or_master = is_release_branch || is_master_branch
 // String cron_string = is_develop_or_master ? "H 23 * * *" : ""
 
+NAMES = sh (script: """#!/bin/bash -l
+					ruby scripts/test_result.rb \"${DEV_NAME}\"
+                     """,
+             		returnStdout: true
+            )
+
+echo "These are the names:"
+echo NAMES
+
 pipeline {
-	environment {
-		APP_NAME = 'poland'
-		LANG = 'en_US.UTF-8'
-		LANGUAGE = 'en_US.UTF-8'
-		LC_ALL = 'en_US.UTF-8'
-        MATCH_PASSWORD=credentials('jenkins-match-password')
-		COMMIT_MESSAGE = sh(script: 'git log --oneline --format=%B -n 1 $GIT_COMMIT', returnStdout: true).trim()
-		NEXUS_USERNAME=credentials('jenkins-nexus-username')
-		NEXUS_PASSWORD=credentials('jenkins-nexus-password')
-		APPLE_ID=credentials('jenkins-apple-id')
-      	FASTLANE_ITC_TEAM_ID=credentials('jenkins-team-id-enterprise')
-      	FASTLANE_USER=credentials('jenkins-apple-id')
-	}
+	// environment {
+	// 	APP_NAME = 'poland'
+	// 	LANG = 'en_US.UTF-8'
+	// 	LANGUAGE = 'en_US.UTF-8'
+	// 	LC_ALL = 'en_US.UTF-8'
+ //        MATCH_PASSWORD=credentials('jenkins-match-password')
+	// 	COMMIT_MESSAGE = sh(script: 'git log --oneline --format=%B -n 1 $GIT_COMMIT', returnStdout: true).trim()
+	// 	NEXUS_USERNAME=credentials('jenkins-nexus-username')
+	// 	NEXUS_PASSWORD=credentials('jenkins-nexus-password')
+	// 	APPLE_ID=credentials('jenkins-apple-id')
+ //      	FASTLANE_ITC_TEAM_ID=credentials('jenkins-team-id-enterprise')
+ //      	FASTLANE_USER=credentials('jenkins-apple-id')
+	// }
 	parameters {
 		// booleanParam(name: "DEPLOY_TO_INTERN", defaultValue: "${is_develop_branch}", description: "Mark this check to build and deploy in app center Intern schema version")
 		// booleanParam(name: "DEPLOY_TO_PRE", defaultValue: "${is_release_or_master}", description: "Mark this check to build and deploy in app center PRE schema version")
