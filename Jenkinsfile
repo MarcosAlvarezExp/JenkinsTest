@@ -26,21 +26,22 @@ node{
     echo "Current workspace is $WORKSPACE"
 }
 
-node {
-	echo "This is a test"
-	NAMES = sh 'ruby scripts/testResult.rb'
-	echo "Print names"
-	echo NAMES
-	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
-}
+// Esto no captura los nombres en la variable
+// node {
+// 	echo "This is a test"
+// 	NAMES = sh 'ruby scripts/testResult.rb'
+// 	echo "Print names"
+// 	echo NAMES
+// 	// sh '/Users/malmes/Documents/git/JenkinsTest/scripts/testResult.rb'
+// }
 
 node {
 	echo "This is another test"
-NAMES = sh (script: """#!/bin/bash -l
-					ruby scripts/testResult.rb
-                     """,
-             		returnStdout: true
-            )
+	NAMES = sh (script: """#!/bin/bash -l
+				ruby scripts/testResult.rb
+                """,
+             	returnStdout: true
+             	)
 
 echo "These are the names:"
 echo NAMES
@@ -68,10 +69,24 @@ pipeline {
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
     }
-	agent { label params.NODE_LABEL ?: 'poland' }  
+	// agent { label params.NODE_LABEL ?: 'poland' } 
+	agent any 
 	// triggers { cron(cron_string) }
 
 	stages {
+
+		stage('Wait for user to input text?') {
+    		steps {
+        		script {
+             		def userInput = input(id: 'userInput', message: 'Merge to?',
+             		parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
+                	description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+             		])
+
+            		println(userInput); //Use this value to branch to different logic if needed
+        		}
+    		}
+		}
 
 		stage('Test script reslt') {
        		steps {
