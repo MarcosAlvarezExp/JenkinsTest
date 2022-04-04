@@ -23,7 +23,7 @@ node {
 	echo "These are the names:"
 	echo NAMES
 	String[] names2 = NAMES.split('\n')
-	echo names2
+	println(names2)
 }
 
 script {
