@@ -115,11 +115,11 @@ pipeline {
 				script {
 					echo "Printing branches"
 					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
-					env.BRANCHES = branches
 					println branches
 					echo "Branch 1:"
 					echo branches.branches[0].Poland
 					echo branches.branches[0].Core
+					env.BRANCHES = branches
 					// echo branches
 					echo "All Branches:"
 					// branches.branches[0].each { key, value ->
@@ -151,7 +151,7 @@ pipeline {
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
+						         choices: [branches2.branches[0].Core, branches2.branches[1].Core].join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
