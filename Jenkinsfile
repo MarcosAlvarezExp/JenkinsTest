@@ -144,7 +144,7 @@ pipeline {
 
 				script {
 					echo "Environment var"
-					def branches = ${env.BRANCHES}
+					def branches = env.BRANCHES
 					println branches
 
 					// def USER_INPUT = input(
