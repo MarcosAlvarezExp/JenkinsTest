@@ -143,10 +143,10 @@ pipeline {
 
 			// echo ${env.BRANCHES}.branches[0].Poland
 
-			def branches = ${env.BRANCHES}
-			println(branches)
-
 				script {
+					def branches = ${env.BRANCHES}
+					println(branches)
+
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
