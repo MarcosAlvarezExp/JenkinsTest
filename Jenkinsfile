@@ -145,13 +145,13 @@ pipeline {
 					println branches
 
 					def coreBranches = ""
-					String[] coreBranchesStrings = []
+					def coreBranchesStrings = []
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    		if (key == "Core") {
 				    			coreBranches = coreBranches + " $value"
-				    			coreBranchesStrings = coreBranchesStrings + $value
+				    			coreBranchesStrings << $value
 				    		}
 				    	}
 					}
