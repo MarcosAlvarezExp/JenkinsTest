@@ -187,48 +187,16 @@ pipeline {
 
 					echo "The answer is: ${USER_INPUT}"
 
-					// Save selected option in json file
+					// Save selected option to json file
 					def branches = readJSON text: env.BRANCHES
 					branches[currentCountryBranch] = USER_INPUT
 					println (branches)
 					writeJSON file: jsonFile, json: branches, pretty: 1
+
+					env.FOUND_BRANCH = USER_INPUT
 				}
 			}
 		}
-
-		// stage('Wait for user to select branch') {
-		// 	when {
-		// 		expression { return !env.FOUND_BRANCH }
-		// 	}
-		// 	steps {
-
-		// 		script {
-		// 			def branches = readJSON text: env.BRANCHES
-		// 			// println branches
-
-		// 			def coreBranches = []
-		// 			// for (Dictionary branch: branches.branches) {
-		// 				branches.each { key, value ->
-		// 		    		coreBranches << "$value"
-		// 		    	}
-		// 			// }
-
-		// 			def USER_INPUT = input(
-		// 				message: 'Select branch from Core submodule to update reference',
-		// 				parameters: [
-		// 				        [$class: 'ChoiceParameterDefinition',
-		// 				         choices: coreBranches.join('\n'),
-		// 				         name: 'input',
-		// 				         description: 'Menu - select box option']
-		// 				])
-
-		// 			echo "The answer is: ${USER_INPUT}"
-
-		// 			// Save selected branch to Json
-		// 			env.FOUND_BRANCH = USER_INPUT
-		// 		}
-		// 	}
-		// }
 
 		stage('Updates Core branch if proceed') {
 			when {
