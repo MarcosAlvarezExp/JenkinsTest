@@ -18,17 +18,17 @@ node {
 	echo "Printing previous names"
 	echo env.NAMES
 
-// 	echo "This is another test"
-// 	NAMES = sh (script: """#!/bin/bash -l
-// 				ruby scripts/testResult.rb
-//                 """,
-//              	returnStdout: true
-//              	)
+	echo "This is another test"
+	NAMES = sh (script: """#!/bin/bash -l
+				ruby scripts/testResult.rb
+                """,
+             	returnStdout: true
+             	)
 
-// 	echo "These are the names:"
-// 	echo NAMES
-// 	env.NAMES = NAMES
-// 	echo "${env.NAMES}"
+	echo "These are the names:"
+	echo NAMES
+	env.NAMES = NAMES
+	echo "${env.NAMES}"
 }
 
 // script {
@@ -77,16 +77,14 @@ node {
 
 pipeline {
 
-	environment {
-		NAMES = sh (script: """#!/bin/bash -l
-				ruby scripts/testResult.rb
-                """,
-             	returnStdout: true
-             	)
-		// def names2 = NAMES.split(" ")
-		echo "Printing NAMES:"
-		echo NAMES
-  	}
+	// environment {
+	// 	NAMES = sh (script: """#!/bin/bash -l
+	// 			ruby scripts/testResult.rb
+ //                """,
+ //             	returnStdout: true
+ //             	)
+ //  	}
+  	
 	// environment {
 	// 	APP_NAME = 'poland'
 	// 	LANG = 'en_US.UTF-8'
