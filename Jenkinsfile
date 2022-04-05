@@ -30,7 +30,8 @@ node {
 	// env.NAMES = NAMES
 	// echo "${env.NAMES}"
 	echo "Another names:"
-	echo "${NAMES}"
+	String namesString = "${NAMES}"
+	echo namesString
 }
 
 // script {
