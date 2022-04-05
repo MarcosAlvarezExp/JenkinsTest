@@ -148,7 +148,7 @@ pipeline {
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
-				    		options = options + " ${$value}"
+				    		options = options + " $value"
 				    	}
 					}
 
