@@ -124,23 +124,23 @@ pipeline {
 
 	stages {
 
-		// stage('Read JSON with previous selected branches') {
-		// 	steps {
-		// 		script {
-		// 			echo "Getting branches from json file"
-		// 			def branches = readJSON file: jsonFile //, returnPojo: true
-		// 			// println branches
-		// 			env.BRANCHES = branches
-		// 			// for (Dictionary branch: branches) {
-		// 				branches.each { key, value ->
-		// 		    		echo "Walked through key $key and value $value"
-		// 		    	}
-		// 			// }
+		stage('Read JSON with previous selected branches') {
+			steps {
+				script {
+					echo "Getting branches from json file"
+					def branches = readJSON file: jsonFile //, returnPojo: true
+					// println branches
+					env.BRANCHES = branches
+					// for (Dictionary branch: branches) {
+						branches.each { key, value ->
+				    		echo "Walked through key $key and value $value"
+				    	}
+					// }
 
-		// 			// echo "Writting json"
-		// 			// writeJSON file: jsonFileWrite, json: branches, pretty: 1
-		// 		}
-		// 	}
+					// echo "Writting json"
+					// writeJSON file: jsonFileWrite, json: branches, pretty: 1
+				}
+			}
 		}
 
 		stage('Update Core branch if exists a previous selection') {
