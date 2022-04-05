@@ -149,7 +149,7 @@ pipeline {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    		if (key == "Core") {
-				    			coreBranches = options + " $value"
+				    			coreBranches = coreBranches + " $value"
 				    		}
 				    	}
 					}
