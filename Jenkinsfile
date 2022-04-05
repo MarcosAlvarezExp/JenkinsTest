@@ -45,7 +45,7 @@ pipeline {
 				expression { return !env.FOUND_BRANCH }
 			}
 			steps {
-				// script {
+				script {
 					// Call script to get options
 					BRANCHES = sh (script: """#!/bin/bash -l
 								ruby scripts/testResult.rb
@@ -75,7 +75,7 @@ pipeline {
 
 					env.FOUND_BRANCH = USER_INPUT
 				}
-			// }
+			}
 		}
 
 		stage('Updates Core branch if proceed') {
