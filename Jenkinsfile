@@ -122,8 +122,13 @@ pipeline {
 					echo "Branches:"
 					// echo branches
 					echo "All Branches:"
-					branches.branches[0].each { key, value ->
-				    	echo "Walked through key $key and value $value"
+					// branches.branches[0].each { key, value ->
+				 //    	echo "Walked through key $key and value $value"
+					// }
+					for (Dictionary branch: branches.branches) {
+						branch.each { key, value ->
+				    		echo "Walked through key $key and value $value"
+				    	}
 					}
 				}
 			}
