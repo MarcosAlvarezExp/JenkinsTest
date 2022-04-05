@@ -122,7 +122,7 @@ pipeline {
 					echo "Branches:"
 					// echo branches
 					echo "All Branches:"
-					branches.branches.each { key, value ->
+					branches.branches[0].each { key, value ->
 				    	echo "Walked through key $key and value $value"
 					}
 				}
