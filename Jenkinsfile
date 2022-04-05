@@ -115,7 +115,6 @@ pipeline {
 				script {
 					echo "Printing branches"
 					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
-					env.BRANCHES = branches
 					println branches
 					echo "Branch 1:"
 					echo branches.branches[0].Poland
@@ -133,7 +132,7 @@ pipeline {
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
-					println
+					env.BRANCHES = branches.branches[0].Poland
 				}
 			}
 		}
