@@ -129,6 +129,9 @@ pipeline {
 				    		echo "Walked through key $key and value $value"
 				    	}
 					}
+
+					echo "Writting json"
+					writeJSON file: "scripts/branchesWrote.json", json: branches
 				}
 			}
 		}
