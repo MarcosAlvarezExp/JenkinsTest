@@ -21,7 +21,9 @@ pipeline {
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
 		// Should show preselected branch to notify user that it will be updated
-		booleanParam(name: "UPDATE_CORE_BRANCH ${env.BRANCH_OPTION}", defaultValue: true, description: "Mark this check to update Core branch")
+		if (env.BRANCH_OPTION != null) {
+			booleanParam(name: "UPDATE_CORE_BRANCH ${env.BRANCH_OPTION}", defaultValue: true, description: "Mark this check to update Core branch")
+		}
     }
 	agent any 
 	// triggers { cron(cron_string) }
