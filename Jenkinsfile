@@ -133,6 +133,7 @@ pipeline {
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
+					println
 				}
 			}
 		}
@@ -140,7 +141,7 @@ pipeline {
 		stage('Get option') {
 			steps {
 
-			echo env.BRANCHES.branches[0].Poland
+			echo ${env.BRANCHES}.branches[0].Poland
 
 				script {
 					def USER_INPUT = input(
