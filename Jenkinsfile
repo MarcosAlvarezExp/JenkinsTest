@@ -137,7 +137,7 @@ pipeline {
 			}
 		}
 
-		stage {
+		stage('Get option') {
 			steps {
 
 			echo env.BRANCHES.branches[0].Poland
