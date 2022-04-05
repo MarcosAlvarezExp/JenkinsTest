@@ -189,8 +189,9 @@ pipeline {
 
 					// Save selected option in json file
 					def branches = readJSON text: env.BRANCHES
-					branches[currentCountryBranch] = "${USER_INPUT}"
-					writeJSON file: jsonFile, json: branches, pretty: 1
+					branches[currentCountryBranch] = USER_INPUT
+					println (branches)
+					// writeJSON file: jsonFile, json: branches, pretty: 1
 				}
 			}
 		}
