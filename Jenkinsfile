@@ -29,6 +29,9 @@ node {
 	echo NAMES
 	env.NAMES = NAMES
 	echo "${env.NAMES}"
+	echo "Another names:"
+	def names = env.NAMES.split(" ")
+	echo names
 }
 
 // script {
@@ -84,7 +87,7 @@ pipeline {
  //             	returnStdout: true
  //             	)
  //  	}
-  	
+
 	// environment {
 	// 	APP_NAME = 'poland'
 	// 	LANG = 'en_US.UTF-8'
