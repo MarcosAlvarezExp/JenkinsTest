@@ -31,7 +31,7 @@ node {
 	echo "${env.NAMES}"
 	echo "Another names:"
 	String[] names2 = env.NAMES.split(" ")
-	echo names2
+	println names2
 }
 
 // script {
