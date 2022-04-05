@@ -9,7 +9,7 @@ String countryKey = "Poland"
 String coreKey = "Core"
 String jsonFile = "scripts/branches2.json"
 String jsonFileWrite = "scripts/branchesWrote.json"
-String selectedBranch = "release/0.6"
+String currentCountryBranch = "release/0.6"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -134,23 +134,28 @@ pipeline {
 				    	}
 					// }
 
+					def found = branches[currentCountryBranch]
+					if (found != null) {
+						env.FOUND_BRANCH = found
+					}
+
 					// echo "Writting json"
 					// writeJSON file: jsonFileWrite, json: branches, pretty: 1
 				}
 			}
 		}
 
-		stage('See if exists a Core branch selected previously') {
-			steps {
-				script {
-					def branches = readJSON text: env.BRANCHES
-					def found = branches[selectedBranch]
-					if (found != null) {
-						env.FOUND_BRANCH = found
-					}
-				}
-			}
-		}
+		// stage('See if exists a Core branch selected previously') {
+		// 	steps {
+		// 		script {
+		// 			def branches = readJSON text: env.BRANCHES
+		// 			def found = branches[currentCountryBranch]
+		// 			if (found != null) {
+		// 				env.FOUND_BRANCH = found
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		stage('Call script to give options') {
 			when {
@@ -159,25 +164,17 @@ pipeline {
 			steps {
 				script {
 
-					echo "This is another test"
 					NAMES = sh (script: """#!/bin/bash -l
 								ruby scripts/testResult.rb
 				                """,
 				             	returnStdout: true
 				             	)
-
-					echo "These are the names:"
-					echo NAMES
-					// env.NAMES = NAMES
-					// echo "${env.NAMES}"
-					echo "Another names:"
+					// echo NAMES
 					String namesString = "${NAMES}"
-					echo namesString
-					echo "Another names 2:"
+					// echo namesString
 					def options = namesString.split("\n") as List // Depending on how i'm returning the result of the script I would use "\n" or ",""
-					// String[] array = string.split(",")
-					echo options[0]
-					echo options[1]
+					// echo options[0]
+					// echo options[1]
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
@@ -189,7 +186,11 @@ pipeline {
 						])
 
 					echo "The answer is: ${USER_INPUT}"
-				
+
+					// Save selected option in json file
+					def branches = readJSON text: env.BRANCHES
+					branches[currentCountryBranch] = "${USER_INPUT}"
+					writeJSON file: jsonFile, json: branches, pretty: 1
 				}
 			}
 		}
