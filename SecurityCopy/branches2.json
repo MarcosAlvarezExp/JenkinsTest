@@ -1,0 +1,16 @@
+{
+	"branches" : [
+		{
+            "Poland": "release/0.4",
+            "Core" : "release/2022/v3"
+        },
+		{
+            "Poland": "release/0.5",
+            "Core": "release/2022/v4"
+        },
+		{
+            "Poland" : "master",
+            "Core": "master"
+        }
+	]
+}
