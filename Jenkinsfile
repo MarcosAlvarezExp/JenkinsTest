@@ -131,7 +131,7 @@ pipeline {
 					}
 
 					echo "Writting json"
-					writeJSON file: "scripts/branchesWrote.json", json: branches
+					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
 				}
 			}
 		}
