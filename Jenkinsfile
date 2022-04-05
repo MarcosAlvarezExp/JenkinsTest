@@ -83,6 +83,7 @@ pipeline {
                 """,
              	returnStdout: true
              	)
+		def names2 = NAMES.split(" ")
   	}
 	// environment {
 	// 	APP_NAME = 'poland'
@@ -101,7 +102,7 @@ pipeline {
 		// booleanParam(name: "DEPLOY_TO_INTERN", defaultValue: "${is_develop_branch}", description: "Mark this check to build and deploy in app center Intern schema version")
 		// booleanParam(name: "DEPLOY_TO_PRE", defaultValue: "${is_release_or_master}", description: "Mark this check to build and deploy in app center PRE schema version")
 		// booleanParam(name: "RUN_APPIUM", defaultValue: "${is_develop_or_master}", description: "Mark this check to build a version for Appium tests ")
-//		 choice(name: 'NAMES', choices: NAMES, description: 'Another description')
+		choice(name: 'NAMES', choices: names2, description: 'Another description')
 		booleanParam(name: "RUN_TESTS", defaultValue: false, description: "Mark this check to execute unit and snapshot tests")
 		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
 		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
@@ -159,7 +160,7 @@ pipeline {
 						         description: 'Menu - select box option']
 						])
 
-					// echo "The answer is: ${USER_INPUT}"
+					echo "The answer is: ${USER_INPUT}"
 				}
 			}
 		}
