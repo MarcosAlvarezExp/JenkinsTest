@@ -26,15 +26,18 @@ pipeline {
 			steps {
 				script {
 					echo "Getting branches from json file"
-					def branches = readJSON file: jsonFile //, returnPojo: true
-					env.BRANCHES = branches
-						branches.each { key, value ->
-				    		echo "Walked through key $key and value $value"
-				    	}
+					def exists = fileExists jsonFile
+					if (exists) {
+						def branches = readJSON file: jsonFile //, returnPojo: true
+						// env.BRANCHES = branches
+						// 	branches.each { key, value ->
+					 //    		echo "Walked through key $key and value $value"
+					 //    	}
 
-					def found = branches[currentCountryBranch]
-					if (found != null) {
-						env.FOUND_BRANCH = found
+						def found = branches[currentCountryBranch]
+						if (found != null) {
+							env.FOUND_BRANCH = found
+						}
 					}
 				}
 			}
