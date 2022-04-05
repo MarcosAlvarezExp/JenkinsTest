@@ -30,8 +30,8 @@ node {
 	env.NAMES = NAMES
 	echo "${env.NAMES}"
 	echo "Another names:"
-	def names = env.NAMES.split(" ")
-	echo names
+	def names2 = env.NAMES.split(" ")
+	echo names2
 }
 
 // script {
