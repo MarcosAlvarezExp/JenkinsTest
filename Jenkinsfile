@@ -132,13 +132,19 @@ pipeline {
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
+					env.BRANCHES = branches
+				}
+			}
+		}
 
+		stage {
+			steps {
+				script {
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
-						         defaultValue: branches.branches[1].Core,
+						         choices: [env.BRANCHES.branches[0].Core, env.BRANCHES.branches[1].Core].join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
