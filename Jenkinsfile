@@ -30,8 +30,8 @@ node {
 	// env.NAMES = NAMES
 	// echo "${env.NAMES}"
 	// echo "Another names:"
-	// String[] names2 = NAMES.split('\n')
-	// println names2
+	String[] names2 = NAMES.split(',')
+	println names2
 }
 
 // script {
