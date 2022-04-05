@@ -115,7 +115,7 @@ pipeline {
 				script {
 					echo "Printing branches"
 					def branches = readJSON file: "scripts/branches.json"
-					println props
+					println branches
 					echo "Branches:"
 					echo branches
 					branches.each { key, value ->
