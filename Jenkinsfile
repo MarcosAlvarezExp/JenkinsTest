@@ -27,18 +27,17 @@ pipeline {
 				script {
 					echo "Getting branches from json file"
 					def exists = fileExists jsonFile
+					def branches = []
 					if (exists) {
-						def branches = readJSON file: jsonFile //, returnPojo: true
-						env.BRANCHES = branches
-						// 	branches.each { key, value ->
-					 //    		echo "Walked through key $key and value $value"
-					 //    	}
-
+						branches = readJSON file: jsonFile //, returnPojo: true
 						def found = branches[currentCountryBranch]
 						if (found != null) {
 							env.FOUND_BRANCH = found
 						}
+					} else {
+						writeJSON file: jsonFile, json: [], pretty: 1
 					}
+					env.BRANCHES = branches
 				}
 			}
 		}
@@ -59,7 +58,6 @@ pipeline {
 					// Show options
 					String branchesString = "${BRANCHES}"
 					def options = branchesString.split("\n") as List
-
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
@@ -68,18 +66,18 @@ pipeline {
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
-
 					echo "Selected option ${USER_INPUT} will be save to json file"
 
 					// Save selected option to json file
-					if (env.BRANCHES != null) {
+					// if (env.BRANCHES != null) {
 						def branches = readJSON text: env.BRANCHES
 						branches[currentCountryBranch] = USER_INPUT
 						writeJSON file: jsonFile, json: branches, pretty: 1
-					} else {
-						def dict = ["${currentCountryBranch}": USER_INPUT]
-						writeJSON file: jsonFile, json: dict, pretty: 1
-					}
+					// }
+					//  else {
+					// 	def dict = ["${currentCountryBranch}": USER_INPUT]
+					// 	writeJSON file: jsonFile, json: dict, pretty: 1
+					// }
 
 					env.FOUND_BRANCH = USER_INPUT
 				}
