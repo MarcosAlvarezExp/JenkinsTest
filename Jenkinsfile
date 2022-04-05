@@ -144,7 +144,8 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					println branches
 
-					String[] options = []
+					// String[] options = []
+					List<String> options = new ArrayList<String>();
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
