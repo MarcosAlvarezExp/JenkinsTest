@@ -5,6 +5,8 @@
 // Boolean is_release_or_master = is_release_branch || is_master_branch
 // String cron_string = is_develop_or_master ? "H 23 * * *" : ""
 String[] names = ["Pepito1", "Juanito1"]
+String countryKey = "Poland"
+String coreKey = "Core"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -113,18 +115,13 @@ pipeline {
 		stage('Read JSON') {
 			steps {
 				script {
-					echo "Printing branches"
+					echo "Getting branches from json file"
 					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
-					println branches
-					echo "Branch 1:"
-					echo branches.branches[0].Poland
-					echo branches.branches[0].Core
+					// println branches
+					// echo "Branch 1:"
+					// echo branches.branches[0].Poland
+					// echo branches.branches[0].Core
 					env.BRANCHES = branches
-					// echo branches
-					echo "All Branches:"
-					// branches.branches[0].each { key, value ->
-				 //    	echo "Walked through key $key and value $value"
-					// }
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
@@ -144,21 +141,14 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					println branches
 
-					def coreBranches = ""
-					def coreBranchesStrings = []
+					def coreBranches = []
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
-				    		echo "Walked through key $key and value $value"
-				    		if (key == "Core") {
-				    			coreBranches = coreBranches + " $value"
-				    			coreBranchesStrings << "$value"
+				    		if (key == coreKey) {
+				    			coreBranches << "$value"
 				    		}
 				    	}
 					}
-
-					String[] options = coreBranches.split(" ")
-					// println options
-					println coreBranchesStrings
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
