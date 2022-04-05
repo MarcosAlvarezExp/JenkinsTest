@@ -111,12 +111,14 @@ pipeline {
 	stages {
 
 		stage('Read JSON') {
-			step {
-				echo "Printing branches"
-				def props = readJSON file: "scripts/branches.json"
-				// println props
-				props.each { key, value ->
-			    	echo "Walked through key $key and value $value"
+			steps {
+				script {
+					echo "Printing branches"
+					def props = readJSON file: "scripts/branches.json"
+					// println props
+					props.each { key, value ->
+				    	echo "Walked through key $key and value $value"
+					}
 				}
 			}
 		}
