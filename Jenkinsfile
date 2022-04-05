@@ -155,12 +155,13 @@ pipeline {
 					}
 
 					String[] options = coreBranches.split(" ")
+					println options
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
 						        [$class: 'ChoiceCoreDefinition',
-						         choices: options.join('\n'),
+						         choices: ["Pepe", "Juan"].join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
