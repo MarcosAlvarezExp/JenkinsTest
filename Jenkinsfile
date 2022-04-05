@@ -138,6 +138,7 @@ pipeline {
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
 						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
+						         defaultValue: branches.branches[1].Core,
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
