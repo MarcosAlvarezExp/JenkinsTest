@@ -115,7 +115,7 @@ pipeline {
 				script {
 					echo "Printing branches"
 					def props = readJSON file: "scripts/branches.json"
-					// println props
+					println props
 					props.each { key, value ->
 				    	echo "Walked through key $key and value $value"
 					}
