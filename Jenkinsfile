@@ -161,7 +161,6 @@ pipeline {
 					}
 					echo "Finished Found branch"
 				}
-			}
 		}
 
 		stage('Wait for user to select branch') {
