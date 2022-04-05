@@ -9,7 +9,7 @@ String countryKey = "Poland"
 String coreKey = "Core"
 String jsonFile = "scripts/branches2.json"
 String jsonFileWrite = "scripts/branchesWrote.json"
-String selectedBranch = "release/0.4"
+String selectedBranch = "release/0.6"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -18,9 +18,6 @@ String selectedBranch = "release/0.4"
 // }
 
 node {
-	echo "Printing previous names"
-	echo env.NAMES
-
 	echo "This is another test"
 	NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
@@ -143,27 +140,45 @@ pipeline {
 			}
 		}
 
-		stage('Update Core branch if exists a previous selection') {
-			// when {
-				// branch 'develop'
-    //     		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
-				// expression { return params.DEPLOY_TO_INTERN }
-
-            // }
+		stage('See if exists a Core branch selected previously') {
 			steps {
 				script {
-					echo "Find branch"
 					def branches = readJSON text: env.BRANCHES
-					branches.each { key, value ->
-				    	echo "$value"
-				    }
 					def found = branches[selectedBranch]
 					if (found != null) {
 						env.FOUND_BRANCH = found
-						echo "Found branch"
-						echo found
 					}
-					echo "Finished Found branch"
+				}
+			}
+		}
+
+		stage('Call script to give options') {
+			when {
+				expression { return !env.FOUND_BRANCH }
+			}
+			steps {
+				script {
+
+					echo "This is another test"
+					NAMES = sh (script: """#!/bin/bash -l
+								ruby scripts/testResult.rb
+				                """,
+				             	returnStdout: true
+				             	)
+
+					echo "These are the names:"
+					echo NAMES
+					// env.NAMES = NAMES
+					// echo "${env.NAMES}"
+					echo "Another names:"
+					String namesString = "${NAMES}"
+					echo namesString
+					echo "Another names 2:"
+					def string = namesString.split("\n") as List // Depending on how i'm returning the result of the script I would use "\n" or ",""
+					// String[] array = string.split(",")
+					echo string[0]
+					echo string[1]
+				
 				}
 			}
 		}
@@ -181,9 +196,7 @@ pipeline {
 					def coreBranches = []
 					// for (Dictionary branch: branches.branches) {
 						branches.each { key, value ->
-				    		// if (key == coreKey) {
-				    			coreBranches << "$value"
-				    		// }
+				    		coreBranches << "$value"
 				    	}
 					// }
 
@@ -197,22 +210,24 @@ pipeline {
 						])
 
 					echo "The answer is: ${USER_INPUT}"
+
+					// Save selected branch to Json
+					env.FOUND_BRANCH = USER_INPUT
 				}
 			}
 		}
 
-		// stage('Wait for user to input text?') {
-  //   		steps {
-  //       		script {
-  //            		def userInput = input(id: 'userInput', message: 'Merge to?',
-  //            		parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
-  //               				description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
-  //            					])
-
-  //           		println(userInput); //Use this value to branch to different logic if needed
-  //       		}
-  //   		}
-		// }
+		stage('Updates Core branch if proceed') {
+			when {
+				expression { return env.FOUND_BRANCH }
+			}
+			steps {
+				script {
+					echo "Update Core branch"
+					// Call script to update Core branch
+				}
+			}
+		}
 
 		stage('Test script reslt') {
        		steps {
