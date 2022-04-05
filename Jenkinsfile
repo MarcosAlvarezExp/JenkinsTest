@@ -29,27 +29,27 @@ node {
 // 	echo "${env.NAMES}"
 }
 
-script {
-	// Define Variable
-	def USER_INPUT = input(
-						message: 'User input required - Some Yes or No question?',
-						parameters: [
-						        [$class: 'ChoiceParameterDefinition',
-						         choices: names.join('\n'),
-						         name: 'input',
-						         description: 'Menu - select box option']
-						])
+// script {
+// 	// Define Variable
+// 	def USER_INPUT = input(
+// 						message: 'User input required - Some Yes or No question?',
+// 						parameters: [
+// 						        [$class: 'ChoiceParameterDefinition',
+// 						         choices: names.join('\n'),
+// 						         name: 'input',
+// 						         description: 'Menu - select box option']
+// 						])
 
-	echo "The answer is: ${USER_INPUT}"
+// 	echo "The answer is: ${USER_INPUT}"
 
-	if( "${USER_INPUT}" == "yes"){
-	//do something
-	} else {
-	//do something else
-	}
-}
+// 	if( "${USER_INPUT}" == "yes"){
+// 	//do something
+// 	} else {
+// 	//do something else
+// 	}
+// }
 
-node{
+node {
     // now you are on slave labeled with 'label'
     def workspace = WORKSPACE
     // ${workspace} will now contain an absolute path to job workspace on slave
@@ -132,6 +132,17 @@ pipeline {
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
+
+					def USER_INPUT = input(
+						message: 'User input required - Some Yes or No question?',
+						parameters: [
+						        [$class: 'ChoiceParameterDefinition',
+						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
+						         name: 'input',
+						         description: 'Menu - select box option']
+						])
+
+					echo "The answer is: ${USER_INPUT}"
 				}
 			}
 		}
