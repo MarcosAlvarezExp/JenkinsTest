@@ -134,11 +134,6 @@ pipeline {
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
 					env.BRANCHES = branches
 				}
-			}
-		}
-
-		stage {
-			steps {
 				script {
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
