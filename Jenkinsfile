@@ -151,7 +151,7 @@ pipeline {
 				    		echo "Walked through key $key and value $value"
 				    		if (key == "Core") {
 				    			coreBranches = coreBranches + " $value"
-				    			coreBranchesStrings << $value
+				    			coreBranchesStrings << "$value"
 				    		}
 				    	}
 					}
