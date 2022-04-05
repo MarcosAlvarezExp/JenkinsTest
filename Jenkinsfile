@@ -8,7 +8,8 @@ String[] names = ["Pepito1", "Juanito1"]
 String countryKey = "Poland"
 String coreKey = "Core"
 String jsonFile = "scripts/branches2.json"
-String optionsScript "scripts/testResult.rb"
+String jsonFileWrite = "scripts/branchesWrote.json"
+String selectedBranch = "release/0.4"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -21,8 +22,9 @@ node {
 	echo env.NAMES
 
 	echo "This is another test"
-	def stringScripts = "#!/bin/bash -l ruby ${optionsScript}"
-	NAMES = sh (script: ""stringScripts"",
+	NAMES = sh (script: """#!/bin/bash -l
+				ruby scripts/testResult.rb
+                """,
              	returnStdout: true
              	)
 
@@ -122,15 +124,12 @@ pipeline {
 
 	stages {
 
-		stage('Read JSON') {
+		stage('Read JSON with previous selected branches') {
 			steps {
 				script {
 					echo "Getting branches from json file"
 					def branches = readJSON file: jsonFile //, returnPojo: true
 					// println branches
-					// echo "Branch 1:"
-					// echo branches.branches[0].Poland
-					// echo branches.branches[0].Core
 					env.BRANCHES = branches
 					// for (Dictionary branch: branches) {
 						branches.each { key, value ->
@@ -138,18 +137,38 @@ pipeline {
 				    	}
 					// }
 
-					echo "Writting json"
-					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
+					// echo "Writting json"
+					// writeJSON file: jsonFileWrite, json: branches, pretty: 1
 				}
 			}
 		}
 
-		stage('Give options') {
+		stage('Update Core branch if exists a previous selection') {
+			when {
+				// branch 'develop'
+    //     		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
+				// expression { return params.DEPLOY_TO_INTERN }
+
+            }
 			steps {
 				script {
-					echo "Environment var"
+					echo "Find branch"
 					def branches = readJSON text: env.BRANCHES
-					println branches
+					def found = branches[selectedBranch]
+					if (found) {}
+						env.SELECTED_BRANCH = found
+						echo "Found branch"
+					}
+					echo "Finished Found branch"
+				}
+			}
+		}
+
+		stage('Wait for user to select branch') {
+			steps {
+				script {
+					def branches = readJSON text: env.BRANCHES
+					// println branches
 
 					def coreBranches = []
 					// for (Dictionary branch: branches.branches) {
