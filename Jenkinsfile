@@ -158,7 +158,7 @@ pipeline {
 				    	echo "$value"
 				    }
 					def found = branches[selectedBranch]
-					if (found) {}
+					if (found != null) {}
 						env.FOUND_BRANCH = found
 						echo "Found branch"
 						echo found
