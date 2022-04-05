@@ -160,7 +160,7 @@ pipeline {
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
-						        [$class: 'ChoiceCoreDefinition',
+						        [$class: 'ChoiceParameterDefinition',
 						         choices: ["Pepe", "Juan"].join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
