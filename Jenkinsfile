@@ -146,7 +146,7 @@ pipeline {
 				script {
 					echo "Environment var"
 					def branches = ${env.BRANCHES}
-					println(branches)
+					println branches
 
 					// def USER_INPUT = input(
 					// 	message: 'User input required - Some Yes or No question?',
