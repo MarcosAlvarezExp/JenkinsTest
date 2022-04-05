@@ -33,9 +33,9 @@ node {
 	String namesString = "${NAMES}"
 	echo namesString
 	echo "Another names 2:"
-	def string = namesString.split("\n") as List
+	def string = namesString.split("\n") as List // Depending on how i'm returning the result of the script I would use "\n" or ",""
 	// String[] array = string.split(",")
-	echo string[0]
+	echo string[1]
 }
 
 // script {
