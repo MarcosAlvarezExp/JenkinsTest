@@ -115,6 +115,7 @@ pipeline {
 				script {
 					echo "Printing branches"
 					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
+					env.BRANCHES = branches
 					println branches
 					echo "Branch 1:"
 					echo branches.branches[0].Poland
@@ -132,31 +133,27 @@ pipeline {
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
-					env.BRANCHES = branches
 				}
 			}
 		}
 
 		stage('Get option') {
 			steps {
-
-			// echo ${env.BRANCHES}.branches[0].Poland
-
 				script {
 					echo "Environment var"
 					def branches = env.BRANCHES
 					println branches
 
-					// def USER_INPUT = input(
-					// 	message: 'User input required - Some Yes or No question?',
-					// 	parameters: [
-					// 	        [$class: 'ChoiceParameterDefinition',
-					// 	         choices: [${env.BRANCHES}.branches[0].Core, env.BRANCHES.branches[1].Core].join('\n'),
-					// 	         name: 'input',
-					// 	         description: 'Menu - select box option']
-					// 	])
+					def USER_INPUT = input(
+						message: 'User input required - Some Yes or No question?',
+						parameters: [
+						        [$class: 'ChoiceParameterDefinition',
+						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
+						         name: 'input',
+						         description: 'Menu - select box option']
+						])
 
-					// echo "The answer is: ${USER_INPUT}"
+					echo "The answer is: ${USER_INPUT}"
 				}
 			}
 		}
