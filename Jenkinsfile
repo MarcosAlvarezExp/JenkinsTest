@@ -29,7 +29,7 @@ pipeline {
 					def exists = fileExists jsonFile
 					if (exists) {
 						def branches = readJSON file: jsonFile //, returnPojo: true
-						// env.BRANCHES = branches
+						env.BRANCHES = branches
 						// 	branches.each { key, value ->
 					 //    		echo "Walked through key $key and value $value"
 					 //    	}
@@ -72,9 +72,14 @@ pipeline {
 					echo "Selected option ${USER_INPUT} will be save to json file"
 
 					// Save selected option to json file
-					def branches = readJSON text: env.BRANCHES
-					branches[currentCountryBranch] = USER_INPUT
-					writeJSON file: jsonFile, json: branches, pretty: 1
+					if (env.BRANCHES != null) {
+						def branches = readJSON text: env.BRANCHES
+						branches[currentCountryBranch] = USER_INPUT
+						writeJSON file: jsonFile, json: branches, pretty: 1
+					} else {
+						def dict = [currentCountryBranch: USER_INPUT]
+						writeJSON file: jsonFile, json: dict, pretty: 1
+					}
 
 					env.FOUND_BRANCH = USER_INPUT
 				}
