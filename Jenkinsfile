@@ -145,17 +145,20 @@ pipeline {
 					println branches
 
 					def coreBranches = ""
+					String[] coreBranchesStrings = []
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    		if (key == "Core") {
 				    			coreBranches = coreBranches + " $value"
+				    			coreBranchesStrings = coreBranchesStrings + $value
 				    		}
 				    	}
 					}
 
 					String[] options = coreBranches.split(" ")
-					println options
+					// println options
+					println coreBranchesStrings
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
