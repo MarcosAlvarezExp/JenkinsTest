@@ -1,5 +1,5 @@
 String jsonFile = "scripts/selectedBranches.json"
-String currentCountryBranch = "release/0.6"
+String currentCountryBranch = "release/0.7"
 
 
 // env.MYTOOL_VERSION = '1.33'
