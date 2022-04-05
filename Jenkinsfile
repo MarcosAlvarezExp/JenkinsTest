@@ -144,12 +144,11 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					println branches
 
-					// String[] options = []
-					List<String> options = new ArrayList<String>();
+					def options = ""
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
-				    		options.add(value)
+				    		options = options + " ${$value}"
 				    	}
 					}
 
@@ -157,7 +156,7 @@ pipeline {
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
 						        [$class: 'ChoiceCoreDefinition',
-						         choices: options.join('\n'),
+						         choices: options.split(" ").join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
