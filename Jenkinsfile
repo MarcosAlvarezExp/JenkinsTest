@@ -21,9 +21,8 @@ node {
 	echo env.NAMES
 
 	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
-				ruby ${optionsScript}
-                """,
+	def stringScripts = "#!/bin/bash -l ruby ${optionsScript}"
+	NAMES = sh (script: ""stringScripts"",
              	returnStdout: true
              	)
 
