@@ -77,7 +77,7 @@ pipeline {
 						branches[currentCountryBranch] = USER_INPUT
 						writeJSON file: jsonFile, json: branches, pretty: 1
 					} else {
-						def dict = [currentCountryBranch: USER_INPUT]
+						def dict = ["${currentCountryBranch}": USER_INPUT]
 						writeJSON file: jsonFile, json: dict, pretty: 1
 					}
 
