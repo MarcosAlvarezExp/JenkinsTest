@@ -9,7 +9,7 @@ String countryKey = "Poland"
 String coreKey = "Core"
 String jsonFile = "scripts/branches2.json"
 String jsonFileWrite = "scripts/branchesWrote.json"
-String selectedBranch = "release/0.4"
+String selectedBranch = "release/0.6"
 
 
 // env.MYTOOL_VERSION = '1.33'
