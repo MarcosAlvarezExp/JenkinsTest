@@ -144,6 +144,9 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					println branches
 
+					echo "Print branch 0 Poland"
+					echo branches.branches[0].Poland
+
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
