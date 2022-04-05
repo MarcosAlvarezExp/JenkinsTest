@@ -33,9 +33,9 @@ node {
 	String namesString = "${NAMES}"
 	echo namesString
 	echo "Another names 2:"
-	def string = namesString as String
-	String[] array = string.split(",")
-	echo array
+	String[] string = namesString as List
+	// String[] array = string.split(",")
+	echo string
 }
 
 // script {
