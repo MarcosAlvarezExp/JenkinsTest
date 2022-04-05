@@ -22,7 +22,7 @@ node {
 
 	echo "This is another test"
 	NAMES = sh (script: """#!/bin/bash -l
-				ruby"""$optionsScript"""
+				ruby"""+optionsScript+"""
                 """,
              	returnStdout: true
              	)
