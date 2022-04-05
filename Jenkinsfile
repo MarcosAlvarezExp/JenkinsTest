@@ -13,6 +13,12 @@ String[] names = ["Pepito1", "Juanito1"]
 // }
 
 node {
+	echo "Printing branches"
+	def props = readJSON file: 'scripts/branches.json'
+	println props
+}
+
+node {
 	echo "Printing previous names"
 	echo env.NAMES
 
@@ -131,76 +137,7 @@ pipeline {
        		}
         }
 
-		// stage('install dependencies') {
-  //      		steps {
-		// 		sh "git checkout $BRANCH_NAME"
-  //      			echo "Installing dependencies"
-		// 		sh "bundle install"
-  //      			sh "cd Project && bundle exec fastlane ios update_pods"
-  //      		}
-  //       }
-		// stage('Distribute Intern') {
-		// 	when {
-		// 		branch 'develop'
-  //       		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
-		// 		expression { return params.DEPLOY_TO_INTERN }
-  //           }
-		// 	steps {
-		// 		echo "Distributing android app"
-		// 		sh "cd Project && bundle exec fastlane ios release deploy_env:intern notify_testers:true branch:develop"
-		// 	}
-  //       }
-		
-		// stage('Run Unit tests') {
-		// 	when {
-		// 		branch 'develop'
-		// 		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
-		// 		expression { return params.RUN_TESTS }
-		// 	}
-		// 	steps {
-		// 		echo "Testing Poland Local Example Apps"
-		// 		sh "cd Project && bundle exec fastlane ios test"
-		// 	}
-		// }
 
-		// stage('Compile Intern to Appium') {
-		// 	when {
-		// 		anyOf { branch 'master'; branch 'develop' }	
-		// 		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
-		// 		expression { return params.RUN_APPIUM }
-  //   		}
-		// 	steps {
-		// 		catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-		// 			echo "Distributing iOS app"
-		// 			sh "cd Project && bundle exec fastlane ios build_appium"
-		// 			sh "mv Build/Products/Intern-Debug-iphonesimulator/PL-INTERN*.app INTERN.app"
-		// 			sh 'zip -vr INTERN.zip INTERN.app/ -x "*.DS_Store"'
-		// 			archiveArtifacts artifacts: 'INTERN.zip'
-		// 		}
-		// 	}
-  //       }
-
-		// stage('Distribute Pre iOS') {
-		// 	when {
-		// 		anyOf { branch 'master'; branch 'release/*' }	
-		// 		expression { return params.DEPLOY_TO_PRE }
-		// 	}
-		// 	steps {
-		// 		echo "Distributing Pre app"
-		// 		sh "cd Project && bundle exec fastlane ios release deploy_env:pre notify_testers:true branch:master"
-		// 	}
-		// }
-		
-		// stage('Increment Version and Update Repo Version ') {
-		// 	when {
-		// 		anyOf { branch 'develop'; branch 'master'; branch 'release/*' }
-		// 		expression { return params.INCREMENT_VERSION }
-  //               expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
-		// 	}
-		// 	steps {
-		// 		sh "cd Project && bundle exec fastlane ios increment_version"
-		// 	}
-  //       }
 	}
 	post {
 		success {
