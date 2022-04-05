@@ -66,7 +66,7 @@ pipeline {
 
 					echo "Selected option ${USER_INPUT} will be save to json file"
 
-					// Save selected option to json file
+					// Save selected option to json file (and create file if it does not exist)
 					if (env.BRANCHES != null) {
 						def branches = readJSON text: env.BRANCHES
 						branches[currentCountryBranch] = USER_INPUT
