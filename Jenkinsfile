@@ -13,15 +13,6 @@ String[] names = ["Pepito1", "Juanito1"]
 // }
 
 node {
-	echo "Printing branches"
-	def props = readJSON file: "scripts/branches.json"
-	// println props
-	props.each { key, value ->
-    	echo "Walked through key $key and value $value"
-	}
-}
-
-node {
 	echo "Printing previous names"
 	echo env.NAMES
 
@@ -118,6 +109,17 @@ pipeline {
 	// triggers { cron(cron_string) }
 
 	stages {
+
+		stage('Read JSON') {
+			step {
+				echo "Printing branches"
+				def props = readJSON file: "scripts/branches.json"
+				// println props
+				props.each { key, value ->
+			    	echo "Walked through key $key and value $value"
+				}
+			}
+		}
 
 		stage('Wait for user to input text?') {
     		steps {
