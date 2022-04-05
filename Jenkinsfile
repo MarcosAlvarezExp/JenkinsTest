@@ -144,26 +144,26 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					println branches
 
-					def options = ""
+					def coreBranches = ""
 					for (Dictionary branch: branches.branches) {
 						branch.each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    		if (key == "Core") {
-				    			options = options + " $value"
+				    			coreBranches = options + " $value"
 				    		}
 				    	}
 					}
 
-					echo options
+					def options = coreBranches.split(" ")
 
-					// def USER_INPUT = input(
-					// 	message: 'Select branch from Core submodule to update reference',
-					// 	parameters: [
-					// 	        [$class: 'ChoiceCoreDefinition',
-					// 	         choices: options.split(" ").join('\n'),
-					// 	         name: 'input',
-					// 	         description: 'Menu - select box option']
-					// 	])
+					def USER_INPUT = input(
+						message: 'Select branch from Core submodule to update reference',
+						parameters: [
+						        [$class: 'ChoiceCoreDefinition',
+						         choices: options.join('\n'),
+						         name: 'input',
+						         description: 'Menu - select box option']
+						])
 
 					// echo "The answer is: ${USER_INPUT}"
 				}
