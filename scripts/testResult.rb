@@ -4,4 +4,4 @@ private def get_names
 	return["Peipito", "Juanito"]
 end
 
-puts get_names.join(",")
+puts get_names
