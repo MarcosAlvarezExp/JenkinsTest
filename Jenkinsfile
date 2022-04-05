@@ -141,8 +141,7 @@ pipeline {
 			steps {
 				script {
 					echo "Environment var"
-					def branches = env.BRANCHES
-					def branches = readJSON text: branches
+					def branches = readJSON text: env.BRANCHES
 					println branches
 
 					def USER_INPUT = input(
