@@ -156,7 +156,7 @@ pipeline {
 					def branches = readJSON text: env.BRANCHES
 					def found = branches[selectedBranch]
 					if (found) {}
-						env.SELECTED_BRANCH = found
+						env.FOUND_BRANCH = found
 						echo "Found branch"
 					}
 					echo "Finished Found branch"
@@ -165,6 +165,9 @@ pipeline {
 
 		stage('Wait for user to select branch') {
 			steps {
+				when {
+					expression { return !env.FOUND_BRANCH }
+				}
 				script {
 					def branches = readJSON text: env.BRANCHES
 					// println branches
