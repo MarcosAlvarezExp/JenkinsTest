@@ -132,7 +132,7 @@ pipeline {
 					// echo branches.branches[0].Core
 					env.BRANCHES = branches
 					// for (Dictionary branch: branches) {
-						branches["branches"].each { key, value ->
+						branches.each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    	}
 					// }
@@ -152,10 +152,10 @@ pipeline {
 
 					def coreBranches = []
 					// for (Dictionary branch: branches.branches) {
-						branches["branches"].each { key, value ->
-				    		if (key == coreKey) {
+						branches.each { key, value ->
+				    		// if (key == coreKey) {
 				    			coreBranches << "$value"
-				    		}
+				    		// }
 				    	}
 					// }
 
