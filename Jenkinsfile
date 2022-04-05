@@ -116,9 +116,13 @@ pipeline {
 					echo "Printing branches"
 					def branches = readJSON file: "scripts/branches.json"
 					println branches
+					echo "Branch 1:"
+					echo branches.branches[0].Poland
+					echo branches.branches[0].Core
 					echo "Branches:"
 					echo branches
-					branches.each { key, value ->
+					echo "All Branches:"
+					branches.branches.each { key, value ->
 				    	echo "Walked through key $key and value $value"
 					}
 				}
