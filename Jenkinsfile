@@ -35,7 +35,7 @@ node {
 	echo "Another names 2:"
 	def string = namesString as List
 	// String[] array = string.split(",")
-	echo string
+	echo string[0]
 }
 
 // script {
