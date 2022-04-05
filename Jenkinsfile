@@ -152,16 +152,18 @@ pipeline {
 				    	}
 					}
 
-					def USER_INPUT = input(
-						message: 'Select branch from Core submodule to update reference',
-						parameters: [
-						        [$class: 'ChoiceCoreDefinition',
-						         choices: options.split(" ").join('\n'),
-						         name: 'input',
-						         description: 'Menu - select box option']
-						])
+					echo options
 
-					echo "The answer is: ${USER_INPUT}"
+					// def USER_INPUT = input(
+					// 	message: 'Select branch from Core submodule to update reference',
+					// 	parameters: [
+					// 	        [$class: 'ChoiceCoreDefinition',
+					// 	         choices: options.split(" ").join('\n'),
+					// 	         name: 'input',
+					// 	         description: 'Menu - select box option']
+					// 	])
+
+					// echo "The answer is: ${USER_INPUT}"
 				}
 			}
 		}
