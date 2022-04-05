@@ -154,7 +154,7 @@ pipeline {
 				    	}
 					}
 
-					def options = coreBranches.split(" ")
+					String[] options = coreBranches.split(" ")
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
