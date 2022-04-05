@@ -161,6 +161,7 @@ pipeline {
 					if (found) {}
 						env.FOUND_BRANCH = found
 						echo "Found branch"
+						echo found
 					}
 					echo "Finished Found branch"
 				}
