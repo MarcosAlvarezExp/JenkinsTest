@@ -141,14 +141,17 @@ pipeline {
 		stage('Get option') {
 			steps {
 
-			echo ${env.BRANCHES}.branches[0].Poland
+			// echo ${env.BRANCHES}.branches[0].Poland
+
+			def branches = ${env.BRANCHES}
+			println(branches)
 
 				script {
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: [env.BRANCHES.branches[0].Core, env.BRANCHES.branches[1].Core].join('\n'),
+						         choices: [${env.BRANCHES}.branches[0].Core, env.BRANCHES.branches[1].Core].join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
