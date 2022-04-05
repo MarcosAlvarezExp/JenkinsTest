@@ -118,7 +118,7 @@ pipeline {
 					println props
 					echo "Branches:"
 					echo branches
-					props.each { key, value ->
+					branches.each { key, value ->
 				    	echo "Walked through key $key and value $value"
 					}
 				}
@@ -148,12 +148,12 @@ pipeline {
 
 
 	}
-	post {
-		success {
-			cleanWs()
-		}
-		failure {
-			mail to: "marcos.alvarez@experis.es", subject: "Build: ${env.JOB_NAME} - Failed", body: "The PL build ${env.JOB_NAME} has failed"
-		}
-	}
+	// post {
+	// 	success {
+	// 		cleanWs()
+	// 	}
+	// 	failure {
+	// 		mail to: "marcos.alvarez@experis.es", subject: "Build: ${env.JOB_NAME} - Failed", body: "The PL build ${env.JOB_NAME} has failed"
+	// 	}
+	// }
 }
