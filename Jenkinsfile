@@ -158,13 +158,14 @@ pipeline {
 				    	echo "$value"
 				    }
 					def found = branches[selectedBranch]
-					if (found != "null") {}
+					if (found != null) {
 						env.FOUND_BRANCH = found
 						echo "Found branch"
 						echo found
 					}
 					echo "Finished Found branch"
 				}
+			}
 		}
 
 		stage('Wait for user to select branch') {
