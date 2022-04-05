@@ -174,48 +174,59 @@ pipeline {
 					String namesString = "${NAMES}"
 					echo namesString
 					echo "Another names 2:"
-					def string = namesString.split("\n") as List // Depending on how i'm returning the result of the script I would use "\n" or ",""
+					def options = namesString.split("\n") as List // Depending on how i'm returning the result of the script I would use "\n" or ",""
 					// String[] array = string.split(",")
-					echo string[0]
-					echo string[1]
-				
-				}
-			}
-		}
-
-		stage('Wait for user to select branch') {
-			when {
-				expression { return !env.FOUND_BRANCH }
-			}
-			steps {
-
-				script {
-					def branches = readJSON text: env.BRANCHES
-					// println branches
-
-					def coreBranches = []
-					// for (Dictionary branch: branches.branches) {
-						branches.each { key, value ->
-				    		coreBranches << "$value"
-				    	}
-					// }
+					echo options[0]
+					echo options[1]
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: coreBranches.join('\n'),
+						         choices: options.join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
 
 					echo "The answer is: ${USER_INPUT}"
-
-					// Save selected branch to Json
-					env.FOUND_BRANCH = USER_INPUT
+				
 				}
 			}
 		}
+
+		// stage('Wait for user to select branch') {
+		// 	when {
+		// 		expression { return !env.FOUND_BRANCH }
+		// 	}
+		// 	steps {
+
+		// 		script {
+		// 			def branches = readJSON text: env.BRANCHES
+		// 			// println branches
+
+		// 			def coreBranches = []
+		// 			// for (Dictionary branch: branches.branches) {
+		// 				branches.each { key, value ->
+		// 		    		coreBranches << "$value"
+		// 		    	}
+		// 			// }
+
+		// 			def USER_INPUT = input(
+		// 				message: 'Select branch from Core submodule to update reference',
+		// 				parameters: [
+		// 				        [$class: 'ChoiceParameterDefinition',
+		// 				         choices: coreBranches.join('\n'),
+		// 				         name: 'input',
+		// 				         description: 'Menu - select box option']
+		// 				])
+
+		// 			echo "The answer is: ${USER_INPUT}"
+
+		// 			// Save selected branch to Json
+		// 			env.FOUND_BRANCH = USER_INPUT
+		// 		}
+		// 	}
+		// }
 
 		stage('Updates Core branch if proceed') {
 			when {
