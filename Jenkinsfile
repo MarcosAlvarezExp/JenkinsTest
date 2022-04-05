@@ -138,10 +138,11 @@ pipeline {
 		}
 
 		stage {
+			steps {
 
 			echo env.BRANCHES.branches[0].Poland
-			
-			script {
+
+				script {
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
 						parameters: [
@@ -153,6 +154,7 @@ pipeline {
 
 					echo "The answer is: ${USER_INPUT}"
 				}
+			}
 		}
 
 		// stage('Wait for user to input text?') {
