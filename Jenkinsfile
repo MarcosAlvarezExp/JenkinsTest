@@ -34,7 +34,7 @@ node {
 	echo namesString
 	echo "Another names 2:"
 	def string = namesString as String
-	def array = string.split(",")
+	String[] array = string.split(",")
 	echo array
 }
 
