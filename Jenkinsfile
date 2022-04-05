@@ -33,7 +33,8 @@ node {
 	String namesString = "${NAMES}"
 	echo namesString
 	echo "Another names 2:"
-	def array = namesString as String
+	def string = namesString as String
+	def array = string.split(",")
 	echo array
 }
 
