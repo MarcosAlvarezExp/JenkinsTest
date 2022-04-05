@@ -164,10 +164,11 @@ pipeline {
 		}
 
 		stage('Wait for user to select branch') {
+			when {
+				expression { return !env.FOUND_BRANCH }
+			}
 			steps {
-				when {
-					!env.FOUND_BRANCH
-				}
+
 				script {
 					def branches = readJSON text: env.BRANCHES
 					// println branches
