@@ -141,11 +141,11 @@ pipeline {
 			steps {
 				script {
 					echo "Environment var"
-					def branches = readJSON text: "${env.BRANCHES}"
-					println branches
+					def branches2 = readJSON text: "${env.BRANCHES}"
+					println branches2
 
 					echo "Print branch 0 Poland"
-					echo branches.branches[0].Poland
+					echo branches2.branches[0].Poland
 
 					def USER_INPUT = input(
 						message: 'User input required - Some Yes or No question?',
