@@ -125,17 +125,17 @@ pipeline {
 			steps {
 				script {
 					echo "Getting branches from json file"
-					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
+					def branches = readJSON file: "scripts/branches2.json"//, returnPojo: true
 					// println branches
 					// echo "Branch 1:"
 					// echo branches.branches[0].Poland
 					// echo branches.branches[0].Core
 					env.BRANCHES = branches
-					for (Dictionary branch: branches.branches) {
-						branch.each { key, value ->
+					// for (Dictionary branch: branches) {
+						branches["branches"].each { key, value ->
 				    		echo "Walked through key $key and value $value"
 				    	}
-					}
+					// }
 
 					echo "Writting json"
 					writeJSON file: "scripts/branchesWrote.json", json: branches, pretty: 1
@@ -143,7 +143,7 @@ pipeline {
 			}
 		}
 
-		stage('Get option') {
+		stage('Give options') {
 			steps {
 				script {
 					echo "Environment var"
@@ -151,13 +151,13 @@ pipeline {
 					println branches
 
 					def coreBranches = []
-					for (Dictionary branch: branches.branches) {
-						branch.each { key, value ->
+					// for (Dictionary branch: branches.branches) {
+						branches["branches"].each { key, value ->
 				    		if (key == coreKey) {
 				    			coreBranches << "$value"
 				    		}
 				    	}
-					}
+					// }
 
 					def USER_INPUT = input(
 						message: 'Select branch from Core submodule to update reference',
