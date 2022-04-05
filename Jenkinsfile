@@ -19,7 +19,7 @@ node {
 	echo env.NAMES
 
 	echo "This is another test"
-	NAMES = sh (script: """#!/bin/bash -l
+	String[] NAMES = sh (script: """#!/bin/bash -l
 				ruby scripts/testResult.rb
                 """,
              	returnStdout: true
@@ -29,9 +29,9 @@ node {
 	echo NAMES
 	env.NAMES = NAMES
 	echo "${env.NAMES}"
-	echo "Another names:"
-	String[] names2 = NAMES.split('\n')
-	println names2
+	// echo "Another names:"
+	// String[] names2 = NAMES.split('\n')
+	// println names2
 }
 
 // script {
