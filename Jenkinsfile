@@ -114,8 +114,10 @@ pipeline {
 			steps {
 				script {
 					echo "Printing branches"
-					def props = readJSON file: "scripts/branches.json"
+					def branches = readJSON file: "scripts/branches.json"
 					println props
+					echo "Branches:"
+					echo branches
 					props.each { key, value ->
 				    	echo "Walked through key $key and value $value"
 					}
@@ -123,18 +125,18 @@ pipeline {
 			}
 		}
 
-		stage('Wait for user to input text?') {
-    		steps {
-        		script {
-             		def userInput = input(id: 'userInput', message: 'Merge to?',
-             		parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
-                				description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
-             					])
+		// stage('Wait for user to input text?') {
+  //   		steps {
+  //       		script {
+  //            		def userInput = input(id: 'userInput', message: 'Merge to?',
+  //            		parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
+  //               				description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+  //            					])
 
-            		println(userInput); //Use this value to branch to different logic if needed
-        		}
-    		}
-		}
+  //           		println(userInput); //Use this value to branch to different logic if needed
+  //       		}
+  //   		}
+		// }
 
 		stage('Test script reslt') {
        		steps {
