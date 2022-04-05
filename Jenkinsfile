@@ -137,26 +137,26 @@ pipeline {
 			}
 		}
 
-		stage('Get option') {
-			steps {
-				script {
-					echo "Environment var"
-					def branches = readJSON text: env.BRANCHES
-					println branches
+		// stage('Get option') {
+		// 	steps {
+		// 		script {
+		// 			echo "Environment var"
+		// 			def branches = readJSON text: env.BRANCHES
+		// 			println branches
 
-					def USER_INPUT = input(
-						message: 'User input required - Some Yes or No question?',
-						parameters: [
-						        [$class: 'ChoiceParameterDefinition',
-						         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
-						         name: 'input',
-						         description: 'Menu - select box option']
-						])
+		// 			def USER_INPUT = input(
+		// 				message: 'User input required - Some Yes or No question?',
+		// 				parameters: [
+		// 				        [$class: 'ChoiceParameterDefinition',
+		// 				         choices: [branches.branches[0].Core, branches.branches[1].Core].join('\n'),
+		// 				         name: 'input',
+		// 				         description: 'Menu - select box option']
+		// 				])
 
-					echo "The answer is: ${USER_INPUT}"
-				}
-			}
-		}
+		// 			echo "The answer is: ${USER_INPUT}"
+		// 		}
+		// 	}
+		// }
 
 		// stage('Wait for user to input text?') {
   //   		steps {
