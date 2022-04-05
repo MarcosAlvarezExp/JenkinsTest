@@ -114,12 +114,11 @@ pipeline {
 			steps {
 				script {
 					echo "Printing branches"
-					def branches = readJSON file: "scripts/branches.json", returnPojo: true
+					def branches = readJSON file: "scripts/branches.json"//, returnPojo: true
 					println branches
 					echo "Branch 1:"
 					echo branches.branches[0].Poland
 					echo branches.branches[0].Core
-					echo "Branches:"
 					// echo branches
 					echo "All Branches:"
 					// branches.branches[0].each { key, value ->
