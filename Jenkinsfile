@@ -7,9 +7,9 @@ String currentCountryBranch = "release/0.7"
 //   sh '/usr/local/mytool-$MYTOOL_VERSION/bin/start'
 // }
 
-script {
-	env.BRANCH_OPTION = "PreselectedBranch"
-}
+// script {
+// 	env.BRANCH_OPTION = "PreselectedBranch"
+// }
 
 pipeline {
 
