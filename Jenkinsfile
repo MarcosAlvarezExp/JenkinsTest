@@ -154,6 +154,9 @@ pipeline {
 				script {
 					echo "Find branch"
 					def branches = readJSON text: env.BRANCHES
+					branches.each { key, value ->
+				    	echo "$value"
+				    }
 					def found = branches[selectedBranch]
 					if (found) {}
 						env.FOUND_BRANCH = found
