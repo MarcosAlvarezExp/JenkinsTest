@@ -29,9 +29,8 @@ node {
 	echo NAMES
 	// env.NAMES = NAMES
 	// echo "${env.NAMES}"
-	// echo "Another names:"
-	def names2 = "${NAMES}"
-	println names2
+	echo "Another names:"
+	echo "${NAMES}"
 }
 
 // script {
