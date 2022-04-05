@@ -30,7 +30,7 @@ node {
 	// env.NAMES = NAMES
 	// echo "${env.NAMES}"
 	// echo "Another names:"
-	String[] names2 = NAMES.split(',')
+	def names2 = "${NAMES}"
 	println names2
 }
 
