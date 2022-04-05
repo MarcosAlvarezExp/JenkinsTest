@@ -161,7 +161,7 @@ pipeline {
 						message: 'Select branch from Core submodule to update reference',
 						parameters: [
 						        [$class: 'ChoiceParameterDefinition',
-						         choices: ["Pepe", "Juan"].join('\n'),
+						         choices: options.join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
