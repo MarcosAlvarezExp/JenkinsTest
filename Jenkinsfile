@@ -14,8 +14,11 @@ String[] names = ["Pepito1", "Juanito1"]
 
 node {
 	echo "Printing branches"
-	def props = readJSON file: 'scripts/branches.json'
-	println props
+	def props = readJSON file: "scripts/branches.json"
+	// println props
+	props.each { key, value ->
+    	echo "Walked through key $key and value $value"
+	}
 }
 
 node {
