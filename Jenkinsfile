@@ -7,6 +7,8 @@
 String[] names = ["Pepito1", "Juanito1"]
 String countryKey = "Poland"
 String coreKey = "Core"
+String jsonFile = "scripts/branches2.json"
+String optionsScript "scripts/testResult.rb"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -20,7 +22,7 @@ node {
 
 	echo "This is another test"
 	NAMES = sh (script: """#!/bin/bash -l
-				ruby scripts/testResult.rb
+				ruby ${optionsScript}
                 """,
              	returnStdout: true
              	)
@@ -125,7 +127,7 @@ pipeline {
 			steps {
 				script {
 					echo "Getting branches from json file"
-					def branches = readJSON file: "scripts/branches2.json"//, returnPojo: true
+					def branches = readJSON file: jsonFile //, returnPojo: true
 					// println branches
 					// echo "Branch 1:"
 					// echo branches.branches[0].Poland
