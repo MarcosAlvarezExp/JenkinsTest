@@ -141,7 +141,7 @@ pipeline {
 			steps {
 				script {
 					echo "Environment var"
-					def branches2 = readJSON text: "${env.BRANCHES}"
+					def branches2 = readJSON text: env.BRANCHES
 					println branches2
 
 					echo "Print branch 0 Poland"
