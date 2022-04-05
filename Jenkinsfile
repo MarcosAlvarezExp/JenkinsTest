@@ -141,17 +141,22 @@ pipeline {
 			steps {
 				script {
 					echo "Environment var"
-					def branches2 = readJSON text: env.BRANCHES
-					println branches2
+					def branches = readJSON text: env.BRANCHES
+					println branches
 
-					echo "Print branch 0 Poland"
-					echo branches2.branches[0].Poland
+					String[] options
+					for (Dictionary branch: branches.branches) {
+						branch.each { key, value ->
+				    		echo "Walked through key $key and value $value"
+				    		options.add(value)
+				    	}
+					}
 
 					def USER_INPUT = input(
-						message: 'User input required - Some Yes or No question?',
+						message: 'Select branch from Core submodule to update reference',
 						parameters: [
-						        [$class: 'ChoiceParameterDefinition',
-						         choices: [branches2.branches[0].Core, branches2.branches[1].Core].join('\n'),
+						        [$class: 'ChoiceCoreDefinition',
+						         choices: options.join('\n'),
 						         name: 'input',
 						         description: 'Menu - select box option']
 						])
