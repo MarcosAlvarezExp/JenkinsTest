@@ -144,12 +144,12 @@ pipeline {
 		}
 
 		stage('Update Core branch if exists a previous selection') {
-			when {
+			// when {
 				// branch 'develop'
     //     		expression { return  !env.COMMIT_MESSAGE.startsWith("Updating Version")}
 				// expression { return params.DEPLOY_TO_INTERN }
 
-            }
+            // }
 			steps {
 				script {
 					echo "Find branch"
