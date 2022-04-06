@@ -13,16 +13,19 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+fastlane_require '../scripts/updateCoreBranch.rb.rb'
+
 default_platform(:ios)
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :custom_lane do |values|
+  lane :update_core_branch do |values|
     UI.message values
     countryBranch = values[:countryBranch]
     coreBranch = values[:coreBranch]
     submoduleName = values[:submoduleName]
 
-    
+    return update_submodule(countryBranch, coreBranch, submoduleName)
+
   end
 end
