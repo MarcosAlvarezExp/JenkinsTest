@@ -15,16 +15,16 @@ private def update_submodule(country_branch, core_branch, submodule_name)
 		# files = Dir[dirname]
 		puts "I would push here: #{dirname}"
 	end
+
+	puts country_branch
+	puts core_branch
+	puts submodule_name
 end
 
-country_branch = ARGV[0]
-core_branch = ARGV[1]
-submodule_name = ARGV[2]
+# country_branch = ARGV[0]
+# core_branch = ARGV[1]
+# submodule_name = ARGV[2]
 
 # update_submodule("release/0.4", "release/2022/v3", "santander-one")
 # update_submodule(country_branch, core_branch, submodule_name)
-
-puts country_branch
-puts core_branch
-puts submodule_name
 

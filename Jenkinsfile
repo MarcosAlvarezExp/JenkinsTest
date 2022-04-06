@@ -1,5 +1,6 @@
 String jsonFile = "scripts/selectedBranches.json"
 String currentCountryBranch = "release/0.7"
+String submoduleName = "santander-one"
 
 
 // env.MYTOOL_VERSION = '1.33'
@@ -93,16 +94,7 @@ pipeline {
 			}
 			steps {
 				script {
-					echo "Update Core branch"
-					// Call script to update Core branch
-					// PRINTED = sh (script: """#!/bin/bash -l
-					// 			ruby scripts/updateCoreBranch.rb release/0.4 release/2022/v3 santander-one
-				 //                """,
-				 //             	returnStdout: true
-				 //             	)
-					// echo PRINTED
-
-					sh "fastlane ios update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
+					sh "fastlane ios update_core_branch countryBranch:${currentCountryBranch} coreBranch:${env.FOUND_BRANCH}submoduleName:${submoduleName}"
 				}
 			}
 		}
