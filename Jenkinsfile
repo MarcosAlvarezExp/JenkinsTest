@@ -95,6 +95,11 @@ pipeline {
 				script {
 					echo "Update Core branch"
 					// Call script to update Core branch
+					sh (script: """#!/bin/bash -l
+								ruby scripts/updateCoreBranch.rb release/0.4 release/2022/v3 santander-one
+				                """,
+				             	returnStdout: true
+				             	)
 				}
 			}
 		}
