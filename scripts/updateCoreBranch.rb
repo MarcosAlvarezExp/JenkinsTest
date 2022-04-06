@@ -22,5 +22,9 @@ core_branch = ARGV[1]
 submodule_name = ARGV[2]
 
 # update_submodule("release/0.4", "release/2022/v3", "santander-one")
-update_submodule(country_branch, core_branch, submodule_name)
+# update_submodule(country_branch, core_branch, submodule_name)
+
+puts country_branch
+puts core_branch
+puts submodule_name
 
