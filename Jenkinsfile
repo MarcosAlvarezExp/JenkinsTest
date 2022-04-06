@@ -111,7 +111,7 @@ pipeline {
 					// echo PRINTED
 
 					PRINTED = sh (script: """#!/bin/bash -l
-								sh "bundle exec fastlane ios update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
+								sh "bundle exec fastlane update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
 				                """,
 				             	returnStdout: true
 				             	)
