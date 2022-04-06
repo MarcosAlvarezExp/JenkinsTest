@@ -2,11 +2,11 @@
 PROJECT_ROOT = "../../"
 
 private def update_submodule(country_branch, core_branch, submodule_name)
-	Dir.chdir(PROJECT_ROOT + "#{submodule_name}") do
-		%x{git fetch origin }
-		%x{git checkout #{core_branch} }
-		# %x{git pull origin #{core_branch} }
-	end
+	# Dir.chdir(PROJECT_ROOT + "#{submodule_name}") do
+	# 	%x{git fetch origin }
+	# 	%x{git checkout #{core_branch} }
+	# 	# %x{git pull origin #{core_branch} }
+	# end
 
 	Dir.chdir(PROJECT_ROOT) do
 		# %x{git commit -m "Updated reference to Core" #{submodule_name}}
