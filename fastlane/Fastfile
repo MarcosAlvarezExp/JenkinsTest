@@ -13,7 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-fastlane_require '../scripts/updateCoreBranch.rb.rb'
+fastlane_require '../scripts/updateCoreBranch.rb'
 
 default_platform(:ios)
 
