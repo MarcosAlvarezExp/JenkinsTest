@@ -16,6 +16,7 @@ private def update_submodule(country_branch, core_branch, submodule_name)
 		puts "I would push here: #{dirname}"
 	end
 
+ 	puts "Countr, core, submodule"
 	puts country_branch
 	puts core_branch
 	puts submodule_name

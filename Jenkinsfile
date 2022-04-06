@@ -94,7 +94,7 @@ pipeline {
 			}
 			steps {
 				script {
-					sh "fastlane ios update_core_branch countryBranch:${currentCountryBranch} coreBranch:${env.FOUND_BRANCH}submoduleName:${submoduleName}"
+					sh "fastlane ios update_core_branch countryBranch:${currentCountryBranch} coreBranch:${env.FOUND_BRANCH} submoduleName:${submoduleName}"
 				}
 			}
 		}
