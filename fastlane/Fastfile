@@ -26,6 +26,5 @@ platform :ios do
     submoduleName = values[:submoduleName]
 
     update_submodule(countryBranch, coreBranch, submoduleName)
-
   end
 end
