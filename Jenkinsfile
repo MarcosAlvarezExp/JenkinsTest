@@ -102,7 +102,7 @@ pipeline {
 				 //             	)
 					// echo PRINTED
 
-					sh "fastlane update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
+					sh "fastlane ios update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
 				}
 			}
 		}
