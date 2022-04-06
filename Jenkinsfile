@@ -95,8 +95,23 @@ pipeline {
 				script {
 					echo "Update Core branch"
 					// Call script to update Core branch
+					// PRINTED = sh (script: """#!/bin/bash -l
+					// 			ruby scripts/updateCoreBranch.rb release/0.4 release/2022/v3 santander-one
+				 //                """,
+				 //             	returnStdout: true
+				 //             	)
+					// echo PRINTED
+
+
+					// PRINTED = sh (script: """#!/bin/bash -l
+					// 			sh "cd Project && bundle exec fastlane ios updateCoreBranch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
+				 //                """,
+				 //             	returnStdout: true
+				 //             	)
+					// echo PRINTED
+
 					PRINTED = sh (script: """#!/bin/bash -l
-								ruby scripts/updateCoreBranch.rb release/0.4 release/2022/v3 santander-one
+								sh "bundle exec fastlane ios update_core_branch countryBranch:release/0.4 coreBranch:release/2022/v3 submoduleName:santander-one"
 				                """,
 				             	returnStdout: true
 				             	)
