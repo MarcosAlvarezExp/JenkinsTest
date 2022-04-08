@@ -1,5 +1,5 @@
 String jsonFile = "scripts/selectedBranches.json"
-String currentCountryBranch = "release/0.7"
+String currentCountryBranch = "release/0.5"
 String submoduleName = "santander-one"
 
 
