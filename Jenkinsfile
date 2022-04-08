@@ -48,6 +48,7 @@ pipeline {
 
 		stage('Give options and save selected one') {
 			when {
+				expression { return params.UPDATE_CORE_BRANCH }
 				expression { return !env.FOUND_BRANCH }
 			}
 			steps {
