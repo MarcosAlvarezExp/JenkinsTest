@@ -18,9 +18,6 @@ pipeline {
 	// 	APP_NAME = 'poland'
 	// }
 	parameters {
-		booleanParam(name: "RUN_TESTS", defaultValue: false, description: "Mark this check to execute unit and snapshot tests")
-		booleanParam(name: "INCREMENT_VERSION", defaultValue: true, description: "Mark this check to commit a version tag and bump version release nuber C (A.B.C)")
-		choice(name: 'NODE_LABEL', choices: ['poland', 'ios', 'hub'], description: '')
 		// Should show preselected branch to notify user that it will be updated if we can call a script to present it before showing these options
 		booleanParam(name: "UPDATE_CORE_BRANCH", defaultValue: false, description: "Mark this check to update Core branch")
     }
