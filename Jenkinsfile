@@ -55,7 +55,7 @@ pipeline {
 				script {
 					// Call script to get options
 					BRANCHES = sh (script: """#!/bin/bash -l
-								ruby scripts/coreBranchesOptions.rb
+								ruby scripts/core_branch_options.rb
 				                """,
 				             	returnStdout: true
 				             	)
